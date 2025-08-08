@@ -105,7 +105,7 @@ const Contact: React.FC<ContactProps> = ({ theme, isDarkMode }) => {
                   <div>
                     <h4 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-1`}>Business Hours</h4>
                     <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-                      Monday - Friday: 8:00 AM - 5:00 PM
+                      Monday - Friday: 8:30 AM - 5:00 PM
                     </p>
                   </div>
                 </div>
