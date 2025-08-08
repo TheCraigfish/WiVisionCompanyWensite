@@ -10,6 +10,8 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ theme, isDarkMode, onDarkModeToggle }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeModal, setActiveModal] = useState<'trials' | 'partner' | null>(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [confirmationType, setConfirmationType] = useState<'trials' | 'partner' | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     // Step 1 - Company Info
@@ -82,7 +84,19 @@ const Header: React.FC<HeaderProps> = ({ theme, isDarkMode, onDarkModeToggle }) 
     e.preventDefault();
     // Handle form submission
     console.log('Form submitted:', formData);
+    
+    // Set confirmation type and show confirmation popup
+    setConfirmationType(activeModal);
+    setShowConfirmation(true);
+    
+    // Close the form modal
     closeModal();
+    
+    // Auto-hide confirmation after 4 seconds
+    setTimeout(() => {
+      setShowConfirmation(false);
+      setConfirmationType(null);
+    }, 4000);
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -455,6 +469,46 @@ const Header: React.FC<HeaderProps> = ({ theme, isDarkMode, onDarkModeToggle }) 
                   </div>
                 )}
               </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Confirmation Popup */}
+      {showConfirmation && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in">
+          <div className="bg-white rounded-2xl max-w-md w-full shadow-2xl transform transition-all duration-300 animate-slide-up">
+            <div className="p-8 text-center">
+              {/* Success Icon */}
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              
+              {/* Title */}
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                Thank You!
+              </h3>
+              
+              {/* Message */}
+              <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                {confirmationType === 'trials' 
+                  ? 'Your free trial request has been submitted successfully. Our team will contact you shortly to set up your trial.'
+                  : 'Your partner application has been submitted successfully. Our partnership team will review your application and contact you shortly.'
+                }
+              </p>
+              
+              {/* Close Button */}
+              <button
+                onClick={() => {
+                  setShowConfirmation(false);
+                  setConfirmationType(null);
+                }}
+                className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+              >
+                Got it!
+              </button>
             </div>
           </div>
         </div>
