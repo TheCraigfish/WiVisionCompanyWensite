@@ -164,3 +164,5 @@ const Solutions: React.FC<SolutionsProps> = ({ theme, isDarkMode }) => {
 };
 
 export default Solutions;
+  )
+}
