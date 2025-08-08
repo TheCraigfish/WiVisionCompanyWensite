@@ -94,17 +94,17 @@ interface SolutionsProps {
 const Solutions: React.FC<SolutionsProps> = ({ theme, isDarkMode }) => {
   const themeColors = {
     teal: {
-      gradient: 'bg-gradient-to-r from-teal-600 to-teal-700',
+      gradient: 'bg-gradient-to-r from-slate-800 to-slate-900',
       accent: 'text-teal-100',
       stats: 'text-teal-400'
     },
     blue: {
-      gradient: 'bg-gradient-to-r from-[#2d7384] to-[#1e5a6b]',
+      gradient: 'bg-gradient-to-r from-slate-800 to-slate-900',
       accent: 'text-[#2d7384]/20',
       stats: 'text-[#2d7384]'
     },
     cyan: {
-      gradient: 'bg-gradient-to-r from-[#12efd5] to-[#0dd4c4]',
+      gradient: 'bg-gradient-to-r from-slate-800 to-slate-900',
       accent: 'text-[#12efd5]/20',
       stats: 'text-[#12efd5]'
     }
