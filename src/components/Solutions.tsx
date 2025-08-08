@@ -113,13 +113,14 @@ const Solutions: React.FC<SolutionsProps> = ({ theme, isDarkMode }) => {
   return (
     <section id="solutions" className={`py-20 ${isDarkMode ? 'bg-slate-900' : 'bg-white'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`${themeColors[theme].gradient} rounded-2xl p-12 text-white`}>
+        <div className={`${isDarkMode ? 'bg-gradient-to-r from-slate-950 to-slate-900' : 'bg-gradient-to-r from-slate-900 to-slate-800'} rounded-2xl p-12 text-white`}>
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-3xl font-bold mb-4">
                 Why Partner with WithSecure™?
               </h3>
               <p className={`${theme === 'teal' ? 'text-teal-100' : 'text-white/80'} text-lg leading-relaxed mb-6`}>
+              <p className={`${isDarkMode ? 'text-slate-200' : 'text-slate-300'} text-lg leading-relaxed mb-6`}>
                 Ready to unlock new opportunities in cybersecurity? Join our global network of trusted WithSecure™ partners and deliver cutting-edge protection to your clients. Together, we can grow your business while providing world-class security solutions backed by Finnish innovation and engineering excellence.
               </p>
               <div className="space-y-3">
@@ -146,10 +147,13 @@ const Solutions: React.FC<SolutionsProps> = ({ theme, isDarkMode }) => {
               <div className={`${isDarkMode ? 'bg-white/20' : 'bg-white/10'} backdrop-blur-sm rounded-xl p-8 inline-block`}>
                 <Counter target={30} suffix="+" theme={theme} />
                 <div className={`${theme === 'teal' ? 'text-teal-100' : 'text-white/80'} mb-4`}>Years of WithSecure™ Innovation</div>
+                <div className={`${isDarkMode ? 'text-slate-200' : 'text-slate-300'} mb-4`}>Years of WithSecure™ Innovation</div>
                 <Counter target={200} suffix="M+" theme={theme} />
                 <div className={`${theme === 'teal' ? 'text-teal-100' : 'text-white/80'} mb-4`}>Devices Protected Globally</div>
+                <div className={`${isDarkMode ? 'text-slate-200' : 'text-slate-300'} mb-4`}>Devices Protected Globally</div>
                 <Counter target={1} prefix="#" theme={theme} countDown={true} countDownFrom={1000} />
                 <div className={`${theme === 'teal' ? 'text-teal-100' : 'text-white/80'}`}>Distributor in Sub-Saharan Africa</div>
+                <div className={`${isDarkMode ? 'text-slate-200' : 'text-slate-300'}`}>Distributor in Sub-Saharan Africa</div>
               </div>
             </div>
           </div>
