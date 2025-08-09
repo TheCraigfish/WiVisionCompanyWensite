@@ -21,7 +21,7 @@ serve(async (req) => {
 
     // Resend API configuration
     const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
-    const TO_EMAIL = 'info@wivision.co.za'
+    const TO_EMAIL = 'craig@wivision.co.za'
     const FROM_EMAIL = 'WiVision Website <noreply@wivision.co.za>'
 
     if (!RESEND_API_KEY) {
