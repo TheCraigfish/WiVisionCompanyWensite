@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle, MessageCircle } from 'lucide-react';
+import { sendEmail } from '../utils/emailService';
 
 interface ContactProps {
   theme: 'teal' | 'blue' | 'cyan';
@@ -42,36 +43,11 @@ const Contact: React.FC<ContactProps> = ({ theme, isDarkMode }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Send email via Edge Function
-    const sendEmail = async () => {
-      try {
-        const response = await fetch('/.netlify/functions/send-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            type: 'contact',
-            data: formData
-          })
-        });
-
-        if (!response.ok) {
-          const errorText = await response.text();
-          console.error('Email API error:', errorText);
-          throw new Error('Failed to send email');
-        }
-
-        const result = await response.json();
-        console.log('Email sent successfully:', result);
-      } catch (error) {
-        console.error('Error sending email:', error);
-        // Still show success to user for better UX
-      }
-    };
-
-    // Send email in background
-    sendEmail();
+    // Send email directly via Resend
+    sendEmail({
+      type: 'contact',
+      data: formData
+    });
     
     // Show success message to user
     setIsSubmitted(true);

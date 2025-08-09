@@ -1,37 +1,15 @@
-const fetch = require('node-fetch');
+// Direct Resend email service
+const RESEND_API_KEY = 're_cSHAhkeD_GRCPN4azRHMmJGXULiREGK4b';
+const TO_EMAIL = 'craig@wivision.co.za';
+const FROM_EMAIL = 'WiVision Website <noreply@wivision.co.za>';
 
-exports.handler = async (event, context) => {
-  // Handle CORS
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  };
+interface EmailData {
+  type: 'free-trial' | 'partner' | 'contact';
+  data: any;
+}
 
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers,
-      body: '',
-    };
-  }
-
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers,
-      body: JSON.stringify({ error: 'Method not allowed' }),
-    };
-  }
-
+export const sendEmail = async ({ type, data }: EmailData): Promise<boolean> => {
   try {
-    const { type, data } = JSON.parse(event.body);
-
-    // Resend API configuration
-    const RESEND_API_KEY = 're_cSHAhkeD_GRCPN4azRHMmJGXULiREGK4b';
-    const TO_EMAIL = 'craig@wivision.co.za';
-    const FROM_EMAIL = 'WiVision Website <noreply@wivision.co.za>';
-
     // Generate email content based on form type
     let subject = '';
     let htmlContent = '';
@@ -164,23 +142,10 @@ exports.handler = async (event, context) => {
 
     const result = await response.json();
     console.log('Email sent successfully:', result.id);
-
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ 
-        success: true, 
-        message: 'Email sent successfully',
-        emailId: result.id 
-      }),
-    };
+    return true;
 
   } catch (error) {
     console.error('Error sending email:', error);
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({ success: false, error: error.message }),
-    };
+    return false;
   }
 };
