@@ -1,22 +1,42 @@
-// Direct Resend email service
-const RESEND_API_KEY = 're_cSHAhkeD_GRCPN4azRHMmJGXULiREGK4b';
-const TO_EMAIL = 'craig@wivision.co.za';
-const FROM_EMAIL = 'WiVision Website <noreply@wivision.co.za>';
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
-interface EmailData {
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+}
+
+interface EmailRequest {
   type: 'free-trial' | 'partner' | 'contact';
   data: any;
 }
 
-export const sendEmail = async ({ type, data }: EmailData): Promise<boolean> => {
+serve(async (req) => {
+  // Handle CORS preflight requests
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders })
+  }
+
   try {
+    const { type, data }: EmailRequest = await req.json()
+
+    // Email configuration
+    const SMTP_HOST = Deno.env.get('SMTP_HOST') || 'smtp.gmail.com'
+    const SMTP_PORT = Deno.env.get('SMTP_PORT') || '587'
+    const SMTP_USER = Deno.env.get('SMTP_USER')
+    const SMTP_PASS = Deno.env.get('SMTP_PASS')
+    const TO_EMAIL = Deno.env.get('TO_EMAIL') || 'info@wivision.co.za'
+
+    if (!SMTP_USER || !SMTP_PASS) {
+      throw new Error('SMTP credentials not configured')
+    }
+
     // Generate email content based on form type
-    let subject = '';
-    let htmlContent = '';
+    let subject = ''
+    let htmlContent = ''
 
     switch (type) {
       case 'free-trial':
-        subject = '🔒 New Free Trial Request - WiVision Website';
+        subject = '🔒 New Free Trial Request - WiVision Website'
         htmlContent = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <div style="background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 30px; text-align: center;">
@@ -46,11 +66,11 @@ export const sendEmail = async ({ type, data }: EmailData): Promise<boolean> => 
               </div>
             </div>
           </div>
-        `;
-        break;
+        `
+        break
 
       case 'partner':
-        subject = '🤝 New Partnership Application - WiVision Website';
+        subject = '🤝 New Partnership Application - WiVision Website'
         htmlContent = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <div style="background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 30px; text-align: center;">
@@ -81,11 +101,11 @@ export const sendEmail = async ({ type, data }: EmailData): Promise<boolean> => 
               </div>
             </div>
           </div>
-        `;
-        break;
+        `
+        break
 
       case 'contact':
-        subject = '📧 New Contact Form Submission - WiVision Website';
+        subject = '📧 New Contact Form Submission - WiVision Website'
         htmlContent = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <div style="background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 30px; text-align: center;">
@@ -112,40 +132,54 @@ export const sendEmail = async ({ type, data }: EmailData): Promise<boolean> => 
               </div>
             </div>
           </div>
-        `;
-        break;
+        `
+        break
 
       default:
-        throw new Error('Invalid form type');
+        throw new Error('Invalid form type')
     }
 
-    // Send email using Resend API
+    // Send email using a service like Resend, SendGrid, or SMTP
+    // For this example, I'll use a simple fetch to a mail service
+    // You'll need to configure your preferred email service
+
+    const emailData = {
+      to: TO_EMAIL,
+      subject: subject,
+      html: htmlContent,
+      from: SMTP_USER
+    }
+
+    // Example using Resend API (you can replace with your preferred service)
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Authorization': `Bearer ${Deno.env.get('RESEND_API_KEY')}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        from: FROM_EMAIL,
-        to: [TO_EMAIL],
-        subject: subject,
-        html: htmlContent,
-      }),
-    });
+      body: JSON.stringify(emailData),
+    })
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Resend API error:', errorText);
-      throw new Error(`Email service error: ${response.status} ${response.statusText}`);
+      throw new Error(`Email service error: ${response.statusText}`)
     }
 
-    const result = await response.json();
-    console.log('Email sent successfully:', result.id);
-    return true;
+    return new Response(
+      JSON.stringify({ success: true, message: 'Email sent successfully' }),
+      {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 200,
+      }
+    )
 
   } catch (error) {
-    console.error('Error sending email:', error);
-    return false;
+    console.error('Error sending email:', error)
+    return new Response(
+      JSON.stringify({ success: false, error: error.message }),
+      {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 500,
+      }
+    )
   }
-};
+})
