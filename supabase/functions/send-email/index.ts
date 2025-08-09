@@ -11,161 +11,94 @@ interface EmailRequest {
 }
 
 serve(async (req) => {
-  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
 
   try {
     const { type, data }: EmailRequest = await req.json()
-
-    // Email configuration
-    const SMTP_HOST = Deno.env.get('SMTP_HOST') || 'smtp.gmail.com'
-    const SMTP_PORT = Deno.env.get('SMTP_PORT') || '587'
-    const SMTP_USER = Deno.env.get('SMTP_USER')
-    const SMTP_PASS = Deno.env.get('SMTP_PASS')
-    const TO_EMAIL = Deno.env.get('TO_EMAIL') || 'info@wivision.co.za'
-
-    if (!SMTP_USER || !SMTP_PASS) {
-      throw new Error('SMTP credentials not configured')
+    
+    const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
+    const TO_EMAIL = 'info@wivision.co.za'
+    
+    if (!RESEND_API_KEY) {
+      throw new Error('RESEND_API_KEY not configured')
     }
 
-    // Generate email content based on form type
+    // Generate email content
     let subject = ''
-    let htmlContent = ''
+    let text = ''
 
-    switch (type) {
-      case 'free-trial':
-        subject = '🔒 New Free Trial Request - WiVision Website'
-        htmlContent = `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <div style="background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 30px; text-align: center;">
-              <h1 style="margin: 0; font-size: 28px;">🔒 New Free Trial Request</h1>
-              <p style="margin: 10px 0 0 0; opacity: 0.9;">From WiVision Website</p>
-            </div>
-            
-            <div style="padding: 30px; background: #f8fafc;">
-              <h2 style="color: #1e293b; margin-bottom: 20px;">Company Information</h2>
-              <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                <p><strong>Company:</strong> ${data.company}</p>
-                <p><strong>Company Size:</strong> ${data.companySize}</p>
-                <p><strong>Country:</strong> ${data.country}</p>
-              </div>
+    if (type === 'free-trial') {
+      subject = 'New Free Trial Request - WiVision'
+      text = `
+FREE TRIAL REQUEST
 
-              <h2 style="color: #1e293b; margin-bottom: 20px;">Contact Information</h2>
-              <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
-                <p><strong>Email:</strong> ${data.businessEmail}</p>
-                <p><strong>Phone:</strong> ${data.businessPhone}</p>
-                ${data.additionalInfo ? `<p><strong>Additional Info:</strong> ${data.additionalInfo}</p>` : ''}
-                <p><strong>Email Consent:</strong> ${data.emailConsent ? 'Yes' : 'No'}</p>
-              </div>
+Company: ${data.company}
+Size: ${data.companySize}
+Country: ${data.country}
 
-              <div style="background: #2d7384; color: white; padding: 15px; border-radius: 8px; text-align: center;">
-                <p style="margin: 0;"><strong>Action Required:</strong> Set up free trial for ${data.company}</p>
-              </div>
-            </div>
-          </div>
-        `
-        break
+Contact: ${data.firstName} ${data.lastName}
+Email: ${data.businessEmail}
+Phone: ${data.businessPhone}
 
-      case 'partner':
-        subject = '🤝 New Partnership Application - WiVision Website'
-        htmlContent = `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <div style="background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 30px; text-align: center;">
-              <h1 style="margin: 0; font-size: 28px;">🤝 New Partnership Application</h1>
-              <p style="margin: 10px 0 0 0; opacity: 0.9;">From WiVision Website</p>
-            </div>
-            
-            <div style="padding: 30px; background: #f8fafc;">
-              <h2 style="color: #1e293b; margin-bottom: 20px;">Company Information</h2>
-              <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                <p><strong>Company:</strong> ${data.company}</p>
-                <p><strong>Company Size:</strong> ${data.companySize}</p>
-                <p><strong>Country:</strong> ${data.country}</p>
-                <p><strong>Current Partner Status:</strong> ${data.partnerStatus}</p>
-              </div>
+Additional Info: ${data.additionalInfo || 'None'}
+Email Consent: ${data.emailConsent ? 'Yes' : 'No'}
+      `.trim()
+    } else if (type === 'partner') {
+      subject = 'New Partnership Application - WiVision'
+      text = `
+PARTNERSHIP APPLICATION
 
-              <h2 style="color: #1e293b; margin-bottom: 20px;">Contact Information</h2>
-              <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
-                <p><strong>Email:</strong> ${data.businessEmail}</p>
-                <p><strong>Phone:</strong> ${data.businessPhone}</p>
-                ${data.additionalInfo ? `<p><strong>Additional Info:</strong> ${data.additionalInfo}</p>` : ''}
-                <p><strong>Email Consent:</strong> ${data.emailConsent ? 'Yes' : 'No'}</p>
-              </div>
+Company: ${data.company}
+Size: ${data.companySize}
+Country: ${data.country}
+Partner Status: ${data.partnerStatus || 'Not specified'}
 
-              <div style="background: #2d7384; color: white; padding: 15px; border-radius: 8px; text-align: center;">
-                <p style="margin: 0;"><strong>Action Required:</strong> Review partnership application from ${data.company}</p>
-              </div>
-            </div>
-          </div>
-        `
-        break
+Contact: ${data.firstName} ${data.lastName}
+Email: ${data.businessEmail}
+Phone: ${data.businessPhone}
 
-      case 'contact':
-        subject = '📧 New Contact Form Submission - WiVision Website'
-        htmlContent = `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <div style="background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 30px; text-align: center;">
-              <h1 style="margin: 0; font-size: 28px;">📧 New Contact Form Submission</h1>
-              <p style="margin: 10px 0 0 0; opacity: 0.9;">From WiVision Website</p>
-            </div>
-            
-            <div style="padding: 30px; background: #f8fafc;">
-              <h2 style="color: #1e293b; margin-bottom: 20px;">Contact Information</h2>
-              <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                <p><strong>Name:</strong> ${data.name}</p>
-                <p><strong>Email:</strong> ${data.email}</p>
-                ${data.company ? `<p><strong>Company:</strong> ${data.company}</p>` : ''}
-                ${data.phone ? `<p><strong>Phone:</strong> ${data.phone}</p>` : ''}
-              </div>
+Additional Info: ${data.additionalInfo || 'None'}
+Email Consent: ${data.emailConsent ? 'Yes' : 'No'}
+      `.trim()
+    } else if (type === 'contact') {
+      subject = 'New Contact Form - WiVision'
+      text = `
+CONTACT FORM SUBMISSION
 
-              <h2 style="color: #1e293b; margin-bottom: 20px;">Message</h2>
-              <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                <p style="line-height: 1.6;">${data.message.replace(/\n/g, '<br>')}</p>
-              </div>
+Name: ${data.name}
+Email: ${data.email}
+Company: ${data.company || 'Not provided'}
+Phone: ${data.phone || 'Not provided'}
 
-              <div style="background: #2d7384; color: white; padding: 15px; border-radius: 8px; text-align: center;">
-                <p style="margin: 0;"><strong>Action Required:</strong> Respond to ${data.name}'s inquiry</p>
-              </div>
-            </div>
-          </div>
-        `
-        break
-
-      default:
-        throw new Error('Invalid form type')
+Message:
+${data.message}
+      `.trim()
     }
 
-    // Send email using a service like Resend, SendGrid, or SMTP
-    // For this example, I'll use a simple fetch to a mail service
-    // You'll need to configure your preferred email service
-
-    const emailData = {
-      to: TO_EMAIL,
-      subject: subject,
-      html: htmlContent,
-      from: SMTP_USER
-    }
-
-    // Example using Resend API (you can replace with your preferred service)
+    // Send via Resend
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${Deno.env.get('RESEND_API_KEY')}`,
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(emailData),
+      body: JSON.stringify({
+        from: 'WiVision Website <noreply@wivision.co.za>',
+        to: [TO_EMAIL],
+        subject: subject,
+        text: text,
+      }),
     })
 
     if (!response.ok) {
-      throw new Error(`Email service error: ${response.statusText}`)
+      const error = await response.text()
+      throw new Error(`Resend API error: ${error}`)
     }
 
     return new Response(
-      JSON.stringify({ success: true, message: 'Email sent successfully' }),
+      JSON.stringify({ success: true }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 200,
@@ -173,7 +106,7 @@ serve(async (req) => {
     )
 
   } catch (error) {
-    console.error('Error sending email:', error)
+    console.error('Email error:', error)
     return new Response(
       JSON.stringify({ success: false, error: error.message }),
       {
