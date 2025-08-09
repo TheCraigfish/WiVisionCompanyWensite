@@ -42,10 +42,10 @@ const Contact: React.FC<ContactProps> = ({ theme, isDarkMode }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Send email via Supabase Edge Function
+    // Send email via Edge Function
     const sendEmail = async () => {
       try {
-        const response = await fetch('/api/send-email', {
+        const response = await fetch('https://wivision.co.za/api/send-email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -57,13 +57,16 @@ const Contact: React.FC<ContactProps> = ({ theme, isDarkMode }) => {
         });
 
         if (!response.ok) {
+          const errorText = await response.text();
+          console.error('Email API error:', errorText);
           throw new Error('Failed to send email');
         }
 
-        console.log('Email sent successfully');
+        const result = await response.json();
+        console.log('Email sent successfully:', result);
       } catch (error) {
         console.error('Error sending email:', error);
-        // Still show success to user, but log error for debugging
+        // Still show success to user for better UX
       }
     };
 
