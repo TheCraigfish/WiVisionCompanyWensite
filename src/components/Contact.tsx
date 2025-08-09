@@ -42,10 +42,10 @@ const Contact: React.FC<ContactProps> = ({ theme, isDarkMode }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Send email via API
+    // Send email via Supabase Edge Function
     const sendEmail = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/send-email', {
+        const response = await fetch('/api/send-email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
