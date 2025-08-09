@@ -82,8 +82,34 @@ const Header: React.FC<HeaderProps> = ({ theme, isDarkMode, onDarkModeToggle }) 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    
+    // Send email via Supabase Edge Function
+    const sendEmail = async () => {
+      try {
+        const response = await fetch('/api/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            type: activeModal === 'trials' ? 'free-trial' : 'partner',
+            data: formData
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to send email');
+        }
+
+        console.log('Email sent successfully');
+      } catch (error) {
+        console.error('Error sending email:', error);
+        // Still show success to user, but log error for debugging
+      }
+    };
+
+    // Send email in background
+    sendEmail();
     
     // Set confirmation type and show confirmation popup
     setConfirmationType(activeModal);
