@@ -45,7 +45,7 @@ const Contact: React.FC<ContactProps> = ({ theme, isDarkMode }) => {
     // Send email via Edge Function
     const sendEmail = async () => {
       try {
-        const response = await fetch('https://wivision.co.za/api/send-email', {
+        const response = await fetch('/.netlify/functions/send-email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

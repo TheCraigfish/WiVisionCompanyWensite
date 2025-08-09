@@ -1,40 +1,44 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+const fetch = require('node-fetch');
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-}
+exports.handler = async (event, context) => {
+  // Handle CORS
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  };
 
-interface EmailRequest {
-  type: 'free-trial' | 'partner' | 'contact';
-  data: any;
-}
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers,
+      body: '',
+    };
+  }
 
-serve(async (req) => {
-  // Handle CORS preflight requests
-  if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders })
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      headers,
+      body: JSON.stringify({ error: 'Method not allowed' }),
+    };
   }
 
   try {
-    const { type, data }: EmailRequest = await req.json()
+    const { type, data } = JSON.parse(event.body);
 
     // Resend API configuration
-    const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
-    const TO_EMAIL = 'craig@wivision.co.za'
-    const FROM_EMAIL = 'WiVision Website <noreply@wivision.co.za>'
-
-    if (!RESEND_API_KEY) {
-      throw new Error('Resend API key not configured')
-    }
+    const RESEND_API_KEY = 're_cSHAhkeD_GRCPN4azRHMmJGXULiREGK4b';
+    const TO_EMAIL = 'craig@wivision.co.za';
+    const FROM_EMAIL = 'WiVision Website <noreply@wivision.co.za>';
 
     // Generate email content based on form type
-    let subject = ''
-    let htmlContent = ''
+    let subject = '';
+    let htmlContent = '';
 
     switch (type) {
       case 'free-trial':
-        subject = '🔒 New Free Trial Request - WiVision Website'
+        subject = '🔒 New Free Trial Request - WiVision Website';
         htmlContent = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <div style="background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 30px; text-align: center;">
@@ -64,11 +68,11 @@ serve(async (req) => {
               </div>
             </div>
           </div>
-        `
-        break
+        `;
+        break;
 
       case 'partner':
-        subject = '🤝 New Partnership Application - WiVision Website'
+        subject = '🤝 New Partnership Application - WiVision Website';
         htmlContent = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <div style="background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 30px; text-align: center;">
@@ -99,11 +103,11 @@ serve(async (req) => {
               </div>
             </div>
           </div>
-        `
-        break
+        `;
+        break;
 
       case 'contact':
-        subject = '📧 New Contact Form Submission - WiVision Website'
+        subject = '📧 New Contact Form Submission - WiVision Website';
         htmlContent = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <div style="background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 30px; text-align: center;">
@@ -130,11 +134,11 @@ serve(async (req) => {
               </div>
             </div>
           </div>
-        `
-        break
+        `;
+        break;
 
       default:
-        throw new Error('Invalid form type')
+        throw new Error('Invalid form type');
     }
 
     // Send email using Resend API
@@ -150,37 +154,33 @@ serve(async (req) => {
         subject: subject,
         html: htmlContent,
       }),
-    })
+    });
 
     if (!response.ok) {
-      const errorText = await response.text()
-      console.error('Resend API error:', errorText)
-      throw new Error(`Email service error: ${response.status} ${response.statusText}`)
+      const errorText = await response.text();
+      console.error('Resend API error:', errorText);
+      throw new Error(`Email service error: ${response.status} ${response.statusText}`);
     }
 
-    const result = await response.json()
-    console.log('Email sent successfully:', result.id)
+    const result = await response.json();
+    console.log('Email sent successfully:', result.id);
 
-    return new Response(
-      JSON.stringify({ 
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({ 
         success: true, 
         message: 'Email sent successfully',
         emailId: result.id 
       }),
-      {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 200,
-      }
-    )
+    };
 
   } catch (error) {
-    console.error('Error sending email:', error)
-    return new Response(
-      JSON.stringify({ success: false, error: error.message }),
-      {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 500,
-      }
-    )
+    console.error('Error sending email:', error);
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({ success: false, error: error.message }),
+    };
   }
-})
+};
