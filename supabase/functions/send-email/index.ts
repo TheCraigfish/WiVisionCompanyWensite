@@ -18,8 +18,8 @@ serve(async (req) => {
   try {
     const { type, data }: EmailRequest = await req.json()
     
-    const RESEND_API_KEY = 're_cSHAhkeD_GRCPN4azRHMmJGXULiREGK4b'
-    const TO_EMAIL = 'craig@wivision.co.za'
+    const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
+    const TO_EMAIL = 'info@wivision.co.za'
     
     if (!RESEND_API_KEY) {
       throw new Error('RESEND_API_KEY not configured')
