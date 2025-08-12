@@ -230,56 +230,56 @@ const Header: React.FC<HeaderProps> = ({ theme, isDarkMode, onDarkModeToggle }) 
       {/* Modal Overlay */}
       {activeModal && (
         <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4 animate-fade-in overflow-y-auto"
           onClick={closeModal}
         >
           <div 
-            className={`${activeModal === 'partner' ? 'bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-2xl transform transition-all duration-300 animate-slide-up' : 'bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all duration-300 animate-slide-up'}`}
+            className={`${activeModal === 'partner' ? 'bg-white rounded-2xl w-full max-w-6xl mx-auto my-4 shadow-2xl transform transition-all duration-300 animate-slide-up' : 'bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all duration-300 animate-slide-up'}`}
             onClick={(e) => e.stopPropagation()}
           >
             {activeModal === 'partner' ? (
               /* Partner Modal - New Design */
-              <div className="grid lg:grid-cols-2 h-full">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 min-h-[600px] max-h-[90vh]">
                 {/* Left Side - Information */}
-                <div className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white p-12 flex flex-col justify-center">
+                <div className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white p-6 sm:p-8 lg:p-12 flex flex-col justify-center lg:min-h-0">
                   <h2 className="text-4xl font-bold mb-8">
                     Join our Partner
                     <br />
                     Program
                   </h2>
                   
-                  <div className="space-y-6 mb-8">
+                  <div className="space-y-4 lg:space-y-6 mb-6 lg:mb-8">
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-white rounded-full mt-3 flex-shrink-0"></div>
-                      <span className="text-slate-200 leading-relaxed">Exclusive WithSecure™ distribution rights in Sub-Saharan Africa</span>
+                      <span className="text-slate-200 leading-relaxed text-sm lg:text-base">Exclusive WithSecure™ distribution rights in Sub-Saharan Africa</span>
                     </div>
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-white rounded-full mt-3 flex-shrink-0"></div>
-                      <span className="text-slate-200 leading-relaxed">Comprehensive partner training and certification programs</span>
+                      <span className="text-slate-200 leading-relaxed text-sm lg:text-base">Comprehensive partner training and certification programs</span>
                     </div>
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-white rounded-full mt-3 flex-shrink-0"></div>
-                      <span className="text-slate-200 leading-relaxed">Co-marketing opportunities and lead generation support</span>
+                      <span className="text-slate-200 leading-relaxed text-sm lg:text-base">Co-marketing opportunities and lead generation support</span>
                     </div>
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-white rounded-full mt-3 flex-shrink-0"></div>
-                      <span className="text-slate-200 leading-relaxed">Award-winning cybersecurity solutions for endpoints and cloud</span>
+                      <span className="text-slate-200 leading-relaxed text-sm lg:text-base">Award-winning cybersecurity solutions for endpoints and cloud</span>
                     </div>
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-white rounded-full mt-3 flex-shrink-0"></div>
-                      <span className="text-slate-200 leading-relaxed">Dedicated technical and sales support from local experts</span>
+                      <span className="text-slate-200 leading-relaxed text-sm lg:text-base">Dedicated technical and sales support from local experts</span>
                     </div>
                   </div>
                   
-                  <p className="text-slate-300 text-lg leading-relaxed">
+                  <p className="text-slate-300 text-base lg:text-lg leading-relaxed">
                     Fill out the form and let's discuss more!
                   </p>
                 </div>
 
                 {/* Right Side - Form */}
-                <div className="p-12 overflow-y-auto">
-                  <div className="flex items-center justify-between mb-8">
-                    <h3 className="text-2xl font-bold text-slate-900">Partner Application</h3>
+                <div className="p-6 sm:p-8 lg:p-12 overflow-y-auto flex-1">
+                  <div className="flex items-center justify-between mb-6 lg:mb-8">
+                    <h3 className="text-xl lg:text-2xl font-bold text-slate-900">Partner Application</h3>
                     <button 
                       onClick={closeModal}
                       className="p-2 rounded-lg hover:bg-slate-100 transition-colors"
@@ -289,7 +289,7 @@ const Header: React.FC<HeaderProps> = ({ theme, isDarkMode, onDarkModeToggle }) 
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-slate-700 mb-2">
                           First Name *
