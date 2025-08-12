@@ -158,7 +158,7 @@ const Hero: React.FC<HeroProps> = ({ theme, isDarkMode }) => {
         style={{ transform: `translateY(${scrollY * 0.2}px)` }}
       ></div>
       
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-52 pb-20 lg:pt-60 lg:pb-24">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-48 pb-20 lg:pt-56 lg:pb-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
           <div className="space-y-8">
             <div className="space-y-4">
