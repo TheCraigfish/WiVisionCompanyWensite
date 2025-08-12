@@ -543,6 +543,9 @@ const Header: React.FC<HeaderProps> = ({ theme, isDarkMode, onDarkModeToggle }) 
                             />
                           </div>
                         </div>
+                      </div>
+                    </div>
+                  </div>
                 )}
               </form>
             </div>
