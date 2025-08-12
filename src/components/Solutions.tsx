@@ -116,6 +116,9 @@ const Solutions: React.FC<SolutionsProps> = ({ theme, isDarkMode }) => {
         <div className={`${themeColors[theme].gradient} rounded-2xl p-12 text-white`}>
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
+              <h3 className="text-3xl font-bold mb-4">
+                Why Partner with WithSecure™?
+              </h3>
               <p className={`${theme === 'teal' ? 'text-teal-100' : 'text-white/80'} text-lg leading-relaxed mb-6`}>
                 Ready to unlock new opportunities in cybersecurity? Join our global network of trusted WithSecure™ partners and deliver cutting-edge protection to your clients. Together, we can grow your business while providing world-class security solutions backed by Finnish innovation and engineering excellence.
               </p>
