@@ -236,7 +236,7 @@ const Contact: React.FC<ContactProps> = ({ theme, isDarkMode }) => {
                       value={formData.phone}
                       onChange={handleChange}
                       className={`w-full px-4 py-3 border ${isDarkMode ? 'border-slate-600 bg-slate-800 text-white' : 'border-slate-300 bg-white'} rounded-lg focus:ring-2 ${themeColors[theme].focus} focus:border-transparent transition-colors`}
-                      placeholder="+27 12 345 6789"
+                      placeholder="+27 XX XXX XXXX"
                     />
                   </div>
                 </div>
