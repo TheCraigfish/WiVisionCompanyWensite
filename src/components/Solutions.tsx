@@ -116,28 +116,28 @@ const Solutions: React.FC<SolutionsProps> = ({ theme, isDarkMode }) => {
         <div className={`${themeColors[theme].gradient} rounded-2xl p-12 text-white`}>
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 className="text-3xl font-bold mb-4">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-4">
                 Why Partner with WithSecure™?
               </h3>
-              <p className={`${theme === 'teal' ? 'text-teal-100' : 'text-white/80'} text-lg leading-relaxed mb-6`}>
+              <p className={`${theme === 'teal' ? 'text-teal-100' : 'text-white/80'} text-base lg:text-lg leading-relaxed mb-6`}>
                 Ready to unlock new opportunities in cybersecurity? Join our global network of trusted WithSecure™ partners and deliver cutting-edge protection to your clients. Together, we can grow your business while providing world-class security solutions backed by Finnish innovation and engineering excellence.
               </p>
               <div className="space-y-3">
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-white rounded-full mr-3"></div>
-                  <span>Trusted, proven cybersecurity solutions</span>
+                  <span className="text-sm lg:text-base">Trusted, proven cybersecurity solutions</span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-white rounded-full mr-3"></div>
-                  <span>Dedicated partner support & training</span>
+                  <span className="text-sm lg:text-base">Dedicated partner support & training</span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-white rounded-full mr-3"></div>
-                  <span>Co-marketing & lead generation opportunities</span>
+                  <span className="text-sm lg:text-base">Co-marketing & lead generation opportunities</span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-white rounded-full mr-3"></div>
-                  <span>Scalable business model with recurring revenue</span>
+                  <span className="text-sm lg:text-base">Scalable business model with recurring revenue</span>
                 </div>
               </div>
             </div>

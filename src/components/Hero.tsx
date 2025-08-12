@@ -170,7 +170,7 @@ const Hero: React.FC<HeroProps> = ({ theme, isDarkMode }) => {
                 Securing Your
                 <span className={`text-transparent bg-clip-text ${themeColors[theme].gradient}`}> Digital Future</span>
               </h1>
-              <p className={`text-xl ${isDarkMode ? 'text-slate-200' : 'text-slate-300'} leading-relaxed`}>
+              <p className={`text-lg lg:text-xl ${isDarkMode ? 'text-slate-200' : 'text-slate-300'} leading-relaxed`}>
                 WiVision delivers enterprise-grade cybersecurity solutions through our exclusive partnership with WithSecure™, protecting businesses across Sub-Saharan Africa with cutting-edge AI driven threat detection and response capabilities.
               </p>
             </div>
@@ -222,8 +222,8 @@ const Hero: React.FC<HeroProps> = ({ theme, isDarkMode }) => {
                     <Shield className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Advanced Threat Protection</h3>
-                    <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-400'} text-sm`}>Real-time monitoring and response</p>
+                    <h3 className="text-lg font-semibold">Advanced Threat Protection</h3>
+                    <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-400'} text-base`}>Real-time monitoring and response</p>
                   </div>
                 </div>
                 
@@ -232,8 +232,8 @@ const Hero: React.FC<HeroProps> = ({ theme, isDarkMode }) => {
                     <Award className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Certified Expertise</h3>
-                    <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-400'} text-sm`}>WithSecure™ certified professionals</p>
+                    <h3 className="text-lg font-semibold">Certified Expertise</h3>
+                    <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-400'} text-base`}>WithSecure™ certified professionals</p>
                   </div>
                 </div>
                 
@@ -242,8 +242,8 @@ const Hero: React.FC<HeroProps> = ({ theme, isDarkMode }) => {
                     <Users className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Dedicated Support</h3>
-                    <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-400'} text-sm`}>Local Sub-Saharan Africa team</p>
+                    <h3 className="text-lg font-semibold">Dedicated Support</h3>
+                    <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-400'} text-base`}>Local Sub-Saharan Africa team</p>
                   </div>
                 </div>
               </div>

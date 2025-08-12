@@ -150,23 +150,23 @@ const About: React.FC<AboutProps> = ({ theme, isDarkMode }) => {
     <section id="about" className={`py-20 ${isDarkMode ? 'bg-slate-900' : 'bg-white'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className={`text-4xl font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-4`}>
+          <h2 className={`text-3xl lg:text-4xl font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-4`}>
             About WiVision
           </h2>
-          <p className={`text-xl ${isDarkMode ? 'text-slate-300' : 'text-slate-600'} max-w-3xl mx-auto`}>
+          <p className={`text-lg lg:text-xl ${isDarkMode ? 'text-slate-300' : 'text-slate-600'} max-w-3xl mx-auto`}>
             As Sub-Saharan Africa's premier WithSecure™ distributor, we bridge the gap between world-class cybersecurity technology and local business needs.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <div className="space-y-6">
-            <h3 className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+            <h3 className={`text-2xl lg:text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
               Leading WithSecure™ Distribution in Sub-Saharan Africa
             </h3>
-            <p className={`text-lg ${isDarkMode ? 'text-slate-300' : 'text-slate-600'} leading-relaxed`}>
+            <p className={`text-base lg:text-lg ${isDarkMode ? 'text-slate-300' : 'text-slate-600'} leading-relaxed`}>
               WiVision has established itself as the trusted bridge between WithSecure™'s innovative cybersecurity solutions and Sub-Saharan African businesses. Our deep understanding of both the local market and global security challenges positions us uniquely to deliver tailored protection strategies.
             </p>
-            <p className={`text-lg ${isDarkMode ? 'text-slate-300' : 'text-slate-600'} leading-relaxed`}>
+            <p className={`text-base lg:text-lg ${isDarkMode ? 'text-slate-300' : 'text-slate-600'} leading-relaxed`}>
               With years of experience in the cybersecurity landscape, we've built a reputation for excellence, reliability, and unmatched customer service. Our team of certified professionals ensures that every client receives not just products, but comprehensive security solutions.
             </p>
             
@@ -211,7 +211,7 @@ const About: React.FC<AboutProps> = ({ theme, isDarkMode }) => {
                   <Target className={`h-6 w-6 ${themeColors[theme].icon} group-hover:text-white transition-colors`} />
                 </div>
                 <h4 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-2`}>Our Mission</h4>
-                <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} text-sm`}>
+                <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} text-sm lg:text-base`}>
                   To democratize enterprise-grade cybersecurity across Sub-Saharan Africa, making advanced protection accessible to businesses of all sizes.
                 </p>
               </div>
@@ -245,7 +245,7 @@ const About: React.FC<AboutProps> = ({ theme, isDarkMode }) => {
                   <Users className={`h-6 w-6 ${themeColors[theme].icon} group-hover:text-white transition-colors`} />
                 </div>
                 <h4 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-2`}>Our Team</h4>
-                <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} text-sm`}>
+                <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} text-sm lg:text-base`}>
                   Certified cybersecurity professionals with deep local market knowledge and global security expertise.
                 </p>
               </div>
@@ -279,7 +279,7 @@ const About: React.FC<AboutProps> = ({ theme, isDarkMode }) => {
                   <Award className={`h-6 w-6 ${themeColors[theme].icon} group-hover:text-white transition-colors`} />
                 </div>
                 <h4 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-2`}>Our Excellence</h4>
-                <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} text-sm`}>
+                <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} text-sm lg:text-base`}>
                   Recognized as the #1 WithSecure™ distributor in Sub-Saharan Africa with proven track record of success.
                 </p>
               </div>
@@ -313,7 +313,7 @@ const About: React.FC<AboutProps> = ({ theme, isDarkMode }) => {
                   <Globe className={`h-6 w-6 ${themeColors[theme].icon} group-hover:text-white transition-colors`} />
                 </div>
                 <h4 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-2`}>Our Reach</h4>
-                <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} text-sm`}>
+                <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} text-sm lg:text-base`}>
                   Serving businesses across Sub-Saharan Africa with localized support and global security standards.
                 </p>
               </div>
