@@ -248,30 +248,30 @@ const Header: React.FC<HeaderProps> = ({ theme, isDarkMode, onDarkModeToggle }) 
                     Program
                   </h2>
                   
-                  <div className="space-y-4 mb-8">
+                  <div className="space-y-6 mb-8">
                     <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-slate-200">Exclusive WithSecure™ distribution rights in Sub-Saharan Africa</span>
+                      <div className="w-2 h-2 bg-white rounded-full mt-3 flex-shrink-0"></div>
+                      <span className="text-slate-200 leading-relaxed">Exclusive WithSecure™ distribution rights in Sub-Saharan Africa</span>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-slate-200">Comprehensive partner training and certification programs</span>
+                      <div className="w-2 h-2 bg-white rounded-full mt-3 flex-shrink-0"></div>
+                      <span className="text-slate-200 leading-relaxed">Comprehensive partner training and certification programs</span>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-slate-200">Co-marketing opportunities and lead generation support</span>
+                      <div className="w-2 h-2 bg-white rounded-full mt-3 flex-shrink-0"></div>
+                      <span className="text-slate-200 leading-relaxed">Co-marketing opportunities and lead generation support</span>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-slate-200">Award-winning cybersecurity solutions for endpoints and cloud</span>
+                      <div className="w-2 h-2 bg-white rounded-full mt-3 flex-shrink-0"></div>
+                      <span className="text-slate-200 leading-relaxed">Award-winning cybersecurity solutions for endpoints and cloud</span>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-slate-200">Dedicated technical and sales support from local experts</span>
+                      <div className="w-2 h-2 bg-white rounded-full mt-3 flex-shrink-0"></div>
+                      <span className="text-slate-200 leading-relaxed">Dedicated technical and sales support from local experts</span>
                     </div>
                   </div>
                   
-                  <p className="text-slate-300 text-lg">
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     Fill out the form and let's discuss more!
                   </p>
                 </div>
