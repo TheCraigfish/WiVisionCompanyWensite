@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Phone, Mail, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
+import { Shield, Phone, Mail, MapPin, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -18,14 +18,14 @@ const Footer = () => {
               South Africa's premier WithSecure™ distributor, delivering enterprise-grade cybersecurity solutions with local expertise and global standards.
             </p>
             <div className="flex space-x-4">
-              <a href="https://www.linkedin.com/company/wivision/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-teal-600 transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="#" className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-teal-600 transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-teal-600 transition-colors">
-                <Facebook className="h-5 w-5" />
+              <a 
+                href="https://www.linkedin.com/company/wivision/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="bg-slate-800 hover:bg-teal-600 transition-all duration-300 rounded-lg px-4 py-3 flex items-center space-x-3 group transform hover:scale-105"
+              >
+                <Linkedin className="h-6 w-6 text-white group-hover:text-white" />
+                <span className="text-white font-medium">LinkedIn</span>
               </a>
             </div>
           </div>
