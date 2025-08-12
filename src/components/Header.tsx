@@ -170,9 +170,8 @@ const Header: React.FC<HeaderProps> = ({ theme, isDarkMode, onDarkModeToggle }) 
             
             <nav className="hidden md:flex items-center space-x-6 ml-48">
               <button onClick={() => scrollToSection('home')} className={`${isDarkMode ? 'text-slate-300' : 'text-slate-700'} ${hoverColors[theme]} font-medium transition-colors`}>Home</button>
-              <button onClick={() => scrollToSection('services')} className={`${isDarkMode ? 'text-slate-300' : 'text-slate-700'} ${hoverColors[theme]} font-medium transition-colors`}>Services</button>
+              <button onClick={() => scrollToSection('services')} className={`${isDarkMode ? 'text-slate-300' : 'text-slate-700'} ${hoverColors[theme]} font-medium transition-colors`}>Solutions</button>
               <button onClick={() => scrollToSection('about')} className={`${isDarkMode ? 'text-slate-300' : 'text-slate-700'} ${hoverColors[theme]} font-medium transition-colors`}>About</button>
-              <button onClick={() => scrollToSection('solutions')} className={`${isDarkMode ? 'text-slate-300' : 'text-slate-700'} ${hoverColors[theme]} font-medium transition-colors`}>Solutions</button>
               <button onClick={() => scrollToSection('contact')} className={`${isDarkMode ? 'text-slate-300' : 'text-slate-700'} ${hoverColors[theme]} font-medium transition-colors`}>Contact</button>
             </nav>
 
@@ -207,9 +206,8 @@ const Header: React.FC<HeaderProps> = ({ theme, isDarkMode, onDarkModeToggle }) 
             <div className={`md:hidden py-4 ${isDarkMode ? 'border-slate-700' : 'border-slate-200'} border-t`}>
               <nav className="flex flex-col space-y-4">
                 <button onClick={() => { scrollToSection('home'); setIsMenuOpen(false); }} className={`${isDarkMode ? 'text-slate-300' : 'text-slate-700'} ${hoverColors[theme]} font-medium text-left`}>Home</button>
-                <button onClick={() => { scrollToSection('services'); setIsMenuOpen(false); }} className={`${isDarkMode ? 'text-slate-300' : 'text-slate-700'} ${hoverColors[theme]} font-medium text-left`}>Services</button>
+                <button onClick={() => { scrollToSection('services'); setIsMenuOpen(false); }} className={`${isDarkMode ? 'text-slate-300' : 'text-slate-700'} ${hoverColors[theme]} font-medium text-left`}>Solutions</button>
                 <button onClick={() => { scrollToSection('about'); setIsMenuOpen(false); }} className={`${isDarkMode ? 'text-slate-300' : 'text-slate-700'} ${hoverColors[theme]} font-medium text-left`}>About</button>
-                <button onClick={() => { scrollToSection('solutions'); setIsMenuOpen(false); }} className={`${isDarkMode ? 'text-slate-300' : 'text-slate-700'} ${hoverColors[theme]} font-medium text-left`}>Solutions</button>
                 <button onClick={() => { scrollToSection('contact'); setIsMenuOpen(false); }} className={`${isDarkMode ? 'text-slate-300' : 'text-slate-700'} ${hoverColors[theme]} font-medium text-left`}>Contact</button>
                 <button onClick={() => { scrollToSection('contact'); setIsMenuOpen(false); }} className={`${isDarkMode ? 'text-slate-300' : 'text-slate-700'} ${hoverColors[theme]} font-medium text-left`}>Support</button>
                 <button onClick={() => openModal('trials')} className={`${isDarkMode ? 'text-slate-300' : 'text-slate-700'} ${hoverColors[theme]} font-medium text-left`}>Free Trials</button>
