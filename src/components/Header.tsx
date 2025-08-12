@@ -234,7 +234,7 @@ const Header: React.FC<HeaderProps> = ({ theme, isDarkMode, onDarkModeToggle }) 
           onClick={closeModal}
         >
           <div 
-            className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all duration-300 animate-slide-up"
+          className={`bg-white rounded-2xl ${activeModal === 'partner' ? 'max-w-6xl' : 'max-w-md'} w-full max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all duration-300 animate-slide-up`}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="p-8">
@@ -474,170 +474,75 @@ const Header: React.FC<HeaderProps> = ({ theme, isDarkMode, onDarkModeToggle }) 
                   </>
                 ) : (
                   /* Partner Form - Single Page Design */
-                  <div className="space-y-6">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">
-                          First Name *
-                        </label>
-                        <input
-                          type="text"
-                          name="firstName"
-                          required
-                          value={formData.firstName}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent bg-white text-slate-900"
-                          placeholder="First Name"
-                        />
+                  /* Partner Form - Two Column Layout matching image */
+                  <div className="grid lg:grid-cols-2 gap-0 -m-8">
+                    {/* Left Column - Information Section */}
+                    <div className="bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 p-12 text-white">
+                      <h3 className="text-4xl font-bold mb-8 leading-tight">
+                        Join our Reseller Program
+                      </h3>
+                      
+                      <div className="space-y-4 mb-8">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-lg">Simplified setup with comprehensive training and support</span>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-lg">Centralized management and visibility of all customers</span>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-lg">Enterprise-grade cybersecurity solutions</span>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-lg">Award-winning security for endpoints and cloud</span>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-lg">Integrations with larger ecosystems</span>
+                        </div>
                       </div>
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">
-                          Last Name *
-                        </label>
-                        <input
-                          type="text"
-                          name="lastName"
-                          required
-                          value={formData.lastName}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent bg-white text-slate-900"
-                          placeholder="Last Name"
-                        />
-                      </div>
+                      
+                      <p className="text-xl font-medium">
+                        Fill out the form and let's discuss more!
+                      </p>
                     </div>
 
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Business Email *
-                      </label>
-                      <input
-                        type="email"
-                        name="businessEmail"
-                        required
-                        value={formData.businessEmail}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent bg-white text-slate-900"
-                        placeholder="Business Email"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Business Phone *
-                      </label>
-                      <input
-                        type="tel"
-                        name="businessPhone"
-                        required
-                        value={formData.businessPhone}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent bg-white text-slate-900"
-                        placeholder="Business Phone"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Company *
-                      </label>
-                      <input
-                        type="text"
-                        name="company"
-                        required
-                        value={formData.company}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent bg-white text-slate-900"
-                        placeholder="Company"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Country *
-                      </label>
-                      <div className="relative">
-                        <select
-                          name="country"
-                          required
-                          value={formData.country}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent bg-white text-slate-900 appearance-none"
-                        >
-                          <option value="">Select country</option>
-                          <option value="South Africa">South Africa</option>
-                          <option value="Nigeria">Nigeria</option>
-                          <option value="Kenya">Kenya</option>
-                          <option value="Ghana">Ghana</option>
-                          <option value="Uganda">Uganda</option>
-                          <option value="Tanzania">Tanzania</option>
-                          <option value="Zimbabwe">Zimbabwe</option>
-                          <option value="Botswana">Botswana</option>
-                          <option value="Namibia">Namibia</option>
-                          <option value="Zambia">Zambia</option>
-                          <option value="Other">Other</option>
-                        </select>
-                        <ChevronDown className="absolute right-0 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Zip / Postal Code
-                      </label>
-                      <input
-                        type="text"
-                        name="postalCode"
-                        value={formData.postalCode}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent bg-white text-slate-900"
-                        placeholder="Zip / Postal Code"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Let us know what you are interested in
-                      </label>
-                      <textarea
-                        name="additionalInfo"
-                        rows={4}
-                        value={formData.additionalInfo}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent bg-white text-slate-900 resize-none"
-                        placeholder="Let us know what you are interested in"
-                      />
-                    </div>
-
-                    <div className="flex items-start space-x-3">
-                      <input
-                        type="checkbox"
-                        name="emailConsent"
-                        id="partnerEmailConsent"
-                        checked={formData.emailConsent}
-                        onChange={handleInputChange}
-                        className="mt-1 h-4 w-4 text-slate-600 focus:ring-slate-500 border-slate-300 rounded"
-                      />
-                      <label htmlFor="partnerEmailConsent" className="text-sm text-slate-600 leading-relaxed">
-                        I would like to receive emails and equivalent communications from WithSecure, including newsletters, event invitations, offers and product-related information.
-                      </label>
-                    </div>
-
-                    <div className="text-sm text-slate-600 leading-relaxed">
-                      We process the personal data you share with us in accordance with our{' '}
-                      <a href="#" className="text-slate-800 hover:underline font-medium">
-                        Corporate Business Privacy Policy
-                      </a>
-                    </div>
-
-                    <div className="pt-6">
-                      <button
-                        type="submit"
-                        className="w-full bg-slate-800 hover:bg-slate-900 text-white px-8 py-3 rounded-lg font-medium transition-colors"
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </div>
+                    {/* Right Column - Form Section */}
+                    <div className="bg-white p-12">
+                      <div className="space-y-6">
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-medium text-slate-600 mb-2">
+                              First Name*
+                            </label>
+                            <input
+                              type="text"
+                              name="firstName"
+                              required
+                              value={formData.firstName}
+                              onChange={handleInputChange}
+                              className="w-full px-0 py-3 border-0 border-b border-slate-300 focus:border-slate-600 focus:ring-0 bg-transparent text-slate-900 placeholder-slate-400"
+                              placeholder=""
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-slate-600 mb-2">
+                              Last Name*
+                            </label>
+                            <input
+                              type="text"
+                              name="lastName"
+                              required
+                              value={formData.lastName}
+                              onChange={handleInputChange}
+                              className="w-full px-0 py-3 border-0 border-b border-slate-300 focus:border-slate-600 focus:ring-0 bg-transparent text-slate-900 placeholder-slate-400"
+                              placeholder=""
+                            />
+                          </div>
+                        </div>
                 )}
               </form>
             </div>
