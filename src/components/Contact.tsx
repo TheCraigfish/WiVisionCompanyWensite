@@ -93,10 +93,10 @@ const Contact: React.FC<ContactProps> = ({ theme, isDarkMode }) => {
     <section id="contact" className={`py-20 ${isDarkMode ? 'bg-slate-800' : 'bg-slate-50'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className={`text-3xl lg:text-4xl font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-4`}>
+          <h2 className={`text-4xl font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-4`}>
             Get in Touch
           </h2>
-          <p className={`text-lg lg:text-xl ${isDarkMode ? 'text-slate-300' : 'text-slate-600'} max-w-3xl mx-auto`}>
+          <p className={`text-xl ${isDarkMode ? 'text-slate-300' : 'text-slate-600'} max-w-3xl mx-auto`}>
             Ready to secure your business? Contact our cybersecurity experts for a consultation and discover how WiVision can protect your organization.
           </p>
         </div>
@@ -104,7 +104,7 @@ const Contact: React.FC<ContactProps> = ({ theme, isDarkMode }) => {
         <div className="grid lg:grid-cols-2 gap-12">
           <div className="space-y-8">
             <div>
-              <h3 className={`text-xl lg:text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-6`}>Contact Information</h3>
+              <h3 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-6`}>Contact Information</h3>
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
@@ -142,36 +142,36 @@ const Contact: React.FC<ContactProps> = ({ theme, isDarkMode }) => {
             </div>
 
             <div className={`${isDarkMode ? 'bg-slate-900' : 'bg-white'} rounded-xl p-6 shadow-lg`}>
-              <h4 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-4`}>Why Choose WiVision?</h4>
+              <h4 className={`font-semibold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-4`}>Why Choose WiVision?</h4>
               <div className="space-y-3">
                 <div className="flex items-center">
                   <CheckCircle className={`h-5 w-5 ${themeColors[theme].checkIcon} mr-3`} />
-                  <span className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} text-sm lg:text-base`}>The Value Added Distributor</span>
+                  <span className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>The Value Added Distributor</span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className={`h-5 w-5 ${themeColors[theme].checkIcon} mr-3`} />
-                  <span className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} text-sm lg:text-base`}>Local support with global expertise</span>
+                  <span className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>Local support with global expertise</span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className={`h-5 w-5 ${themeColors[theme].checkIcon} mr-3`} />
-                  <span className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} text-sm lg:text-base`}>24/7 security monitoring and response</span>
+                  <span className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>24/7 security monitoring and response</span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className={`h-5 w-5 ${themeColors[theme].checkIcon} mr-3`} />
-                  <span className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} text-sm lg:text-base`}>Certified cybersecurity professionals</span>
+                  <span className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>Certified cybersecurity professionals</span>
                 </div>
               </div>
             </div>
           </div>
 
           <div className={`${isDarkMode ? 'bg-slate-900' : 'bg-white'} rounded-xl p-8 shadow-lg`}>
-            <h3 className={`text-xl lg:text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-6`}>Send us a Message</h3>
+            <h3 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-6`}>Send us a Message</h3>
             
             {isSubmitted ? (
               <div className="text-center py-8">
                 <CheckCircle className={`h-16 w-16 ${themeColors[theme].checkIcon} mx-auto mb-4`} />
-                <h4 className={`text-lg lg:text-xl font-semibold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-2`}>Message Sent!</h4>
-                <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} text-sm lg:text-base`}>Thank you for contacting us. We'll get back to you within 24 hours.</p>
+                <h4 className={`text-xl font-semibold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-2`}>Message Sent!</h4>
+                <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>Thank you for contacting us. We'll get back to you within 24 hours.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -280,7 +280,7 @@ const Contact: React.FC<ContactProps> = ({ theme, isDarkMode }) => {
             <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'} mb-2`}>
               Need Immediate Help?
             </h3>
-            <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} text-sm lg:text-base mb-6`}>
+            <p className={`${isDarkMode ? 'text-slate-300' : 'text-slate-600'} mb-6`}>
               Chat with our cybersecurity experts right now for instant support and answers to your questions.
             </p>
             <button

@@ -21,10 +21,10 @@ const CertificationsCarousel = () => {
     <section className="py-12 bg-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <h2 className="text-xl lg:text-2xl font-bold text-slate-900 mb-2">
+          <h2 className="text-2xl font-bold text-slate-900 mb-2">
             Industry Recognition & Certifications
           </h2>
-          <p className="text-sm lg:text-base text-slate-600 max-w-2xl mx-auto">
+          <p className="text-slate-600 max-w-2xl mx-auto">
             WithSecure™'s cybersecurity solutions are recognized by leading industry organizations and testing laboratories worldwide.
           </p>
         </div>
