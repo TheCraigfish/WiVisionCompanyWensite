@@ -1,0 +1,47 @@
+# cPanel Deployment Instructions
+
+## 📁 What's in this package:
+- All website files (HTML, CSS, JS, images)
+- .htaccess file for React Router
+- send-email.php for contact forms
+- This instruction file
+
+## 🚀 How to deploy:
+
+### Step 1: Upload Files
+1. Login to your cPanel
+2. Go to File Manager
+3. Navigate to public_html folder
+4. Upload ALL files from this package to public_html
+5. Extract if uploaded as ZIP
+
+### Step 2: Set Permissions
+1. Right-click on send-email.php
+2. Change permissions to 755
+
+### Step 3: Test
+1. Visit your domain
+2. Test contact forms
+3. Check that navigation works
+
+## ✅ Requirements:
+- PHP enabled (standard on most cPanel hosts)
+- Mail function enabled (standard)
+- No database needed
+- No special modules needed
+
+## 📧 Email Configuration:
+- Emails will be sent to: info@wivision.co.za
+- From address: noreply@wivision.co.za
+- Make sure your domain can send emails
+
+## 🔧 Troubleshooting:
+- If contact forms don't work, check PHP error logs
+- If navigation doesn't work, check .htaccess is uploaded
+- If images don't load, check file permissions
+
+## 📞 Support:
+Contact your hosting provider if you need help with:
+- PHP configuration
+- Email sending issues
+- File permissions
