@@ -63,8 +63,8 @@ function validateEmail($email) {
 }
 
 // Extract and validate form type
-$type = $input['type'] ?? '';
-$data = $input['data'] ?? [];
+$type = isset($input['type']) ? sanitizeInput($input['type']) : '';
+$data = isset($input['data']) ? $input['data'] : [];
 
 // Validate required fields based on type
 $errors = [];

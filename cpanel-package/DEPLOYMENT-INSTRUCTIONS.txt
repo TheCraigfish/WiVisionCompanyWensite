@@ -3,7 +3,8 @@
 ## 📁 What's in this package:
 - All website files (HTML, CSS, JS, images)
 - .htaccess file for React Router
-- send-email.php for contact forms
+- send-email.php for contact forms (with PHPMailer)
+- phpmailer/ folder with PHPMailer library
 - This instruction file
 
 ## 🚀 How to deploy:
@@ -19,29 +20,57 @@
 1. Right-click on send-email.php
 2. Change permissions to 755
 
-### Step 3: Test
+### Step 3: Configure Email Settings
+1. Open send-email.php in a text editor
+2. Replace these placeholder values with your actual cPanel email settings:
+   - $smtp_host = 'mail.yourdomain.com'
+   - $smtp_username = 'contact@yourdomain.com'
+   - $smtp_password = 'your_actual_password'
+3. Save the file
+
+### Step 4: Test
 1. Visit your domain
 2. Test contact forms
 3. Check that navigation works
 
 ## ✅ Requirements:
 - PHP enabled (standard on most cPanel hosts)
-- Mail function enabled (standard)
+- PHP SMTP support (standard)
+- OpenSSL extension (for secure email)
 - No database needed
 - No special modules needed
 
-## 📧 Email Configuration:
-- Emails will be sent to: info@wivision.co.za
-- From address: noreply@wivision.co.za
-- Make sure your domain can send emails
+## 📧 Email Setup:
+- Uses PHPMailer with SMTP authentication
+- Secure SSL/TLS encryption
+- Emails sent to: info@wivision.co.za
+- Uses your cPanel email account for sending
+- Includes spam protection and input validation
 
 ## 🔧 Troubleshooting:
-- If contact forms don't work, check PHP error logs
+- If contact forms don't work:
+  1. Check your email credentials in send-email.php
+  2. Verify your cPanel email account exists
+  3. Check PHP error logs in cPanel
+  4. Test SMTP settings with your hosting provider
 - If navigation doesn't work, check .htaccess is uploaded
 - If images don't load, check file permissions
 
+## 🔐 Security Features:
+- Input sanitization and validation
+- CSRF protection via JSON POST only
+- Email injection prevention
+- Secure SMTP authentication
+
 ## 📞 Support:
 Contact your hosting provider if you need help with:
-- PHP configuration
-- Email sending issues
+- SMTP/Email configuration
+- PHP extension issues
 - File permissions
+
+## 📝 Email Settings Guide:
+Common cPanel email settings:
+- SMTP Host: mail.yourdomain.com
+- Port 465 (SSL) or 587 (TLS)
+- Username: your full email address
+- Password: your email password
