@@ -29,93 +29,64 @@ if (!$input) {
 $type = $input['type'] ?? '';
 $data = $input['data'] ?? [];
 
-// Email configuration - UPDATE THESE WITH YOUR DETAILS
-$to_email = 'info@wivision.co.za';  // Change to your email
-$from_email = 'noreply@yourdomain.com';  // Change to your domain
+// Email configuration
+$to_email = 'info@wivision.co.za';
+$from_email = 'noreply@wivision.co.za';
 
 // Generate email content based on type
 $subject = '';
 $message = '';
-$reply_to = '';
 
 switch ($type) {
     case 'free-trial':
-        $subject = 'New Free Trial Request - WiVision Website';
-        $reply_to = $data['businessEmail'] ?? $from_email;
-        $message = "=== FREE TRIAL REQUEST ===\n\n";
-        $message .= "COMPANY INFORMATION:\n";
-        $message .= "Company: " . ($data['company'] ?? 'Not provided') . "\n";
-        $message .= "Company Size: " . ($data['companySize'] ?? 'Not provided') . "\n";
-        $message .= "Country: " . ($data['country'] ?? 'Not provided') . "\n";
-        $message .= "Postal Code: " . ($data['postalCode'] ?? 'Not provided') . "\n\n";
-        
-        $message .= "CONTACT INFORMATION:\n";
-        $message .= "Name: " . ($data['firstName'] ?? '') . " " . ($data['lastName'] ?? '') . "\n";
-        $message .= "Business Email: " . ($data['businessEmail'] ?? 'Not provided') . "\n";
-        $message .= "Business Phone: " . ($data['businessPhone'] ?? 'Not provided') . "\n\n";
-        
-        $message .= "ADDITIONAL DETAILS:\n";
-        $message .= "Additional Info: " . ($data['additionalInfo'] ?? 'None provided') . "\n";
-        $message .= "Email Marketing Consent: " . (($data['emailConsent'] ?? false) ? 'Yes' : 'No') . "\n\n";
-        
-        $message .= "Submitted: " . date('Y-m-d H:i:s') . "\n";
-        $message .= "IP Address: " . $_SERVER['REMOTE_ADDR'] . "\n";
+        $subject = 'New Free Trial Request - WiVision';
+        $message = "FREE TRIAL REQUEST\n\n";
+        $message .= "Company: " . ($data['company'] ?? '') . "\n";
+        $message .= "Size: " . ($data['companySize'] ?? '') . "\n";
+        $message .= "Country: " . ($data['country'] ?? '') . "\n\n";
+        $message .= "Contact: " . ($data['firstName'] ?? '') . " " . ($data['lastName'] ?? '') . "\n";
+        $message .= "Email: " . ($data['businessEmail'] ?? '') . "\n";
+        $message .= "Phone: " . ($data['businessPhone'] ?? '') . "\n\n";
+        $message .= "Additional Info: " . ($data['additionalInfo'] ?? 'None') . "\n";
+        $message .= "Email Consent: " . (($data['emailConsent'] ?? false) ? 'Yes' : 'No') . "\n";
         break;
         
     case 'partner':
-        $subject = 'New Partnership Application - WiVision Website';
-        $reply_to = $data['businessEmail'] ?? $from_email;
-        $message = "=== PARTNERSHIP APPLICATION ===\n\n";
-        $message .= "COMPANY INFORMATION:\n";
-        $message .= "Company: " . ($data['company'] ?? 'Not provided') . "\n";
-        $message .= "Company Size: " . ($data['companySize'] ?? 'Not provided') . "\n";
-        $message .= "Country: " . ($data['country'] ?? 'Not provided') . "\n";
-        $message .= "Postal Code: " . ($data['postalCode'] ?? 'Not provided') . "\n\n";
-        
-        $message .= "CONTACT INFORMATION:\n";
-        $message .= "Name: " . ($data['firstName'] ?? '') . " " . ($data['lastName'] ?? '') . "\n";
-        $message .= "Business Email: " . ($data['businessEmail'] ?? 'Not provided') . "\n";
-        $message .= "Business Phone: " . ($data['businessPhone'] ?? 'Not provided') . "\n\n";
-        
-        $message .= "ADDITIONAL DETAILS:\n";
-        $message .= "Interest/Notes: " . ($data['additionalInfo'] ?? 'None provided') . "\n";
-        $message .= "Email Marketing Consent: " . (($data['emailConsent'] ?? false) ? 'Yes' : 'No') . "\n\n";
-        
-        $message .= "Submitted: " . date('Y-m-d H:i:s') . "\n";
-        $message .= "IP Address: " . $_SERVER['REMOTE_ADDR'] . "\n";
+        $subject = 'New Partnership Application - WiVision';
+        $message = "PARTNERSHIP APPLICATION\n\n";
+        $message .= "Company: " . ($data['company'] ?? '') . "\n";
+        $message .= "Size: " . ($data['companySize'] ?? '') . "\n";
+        $message .= "Country: " . ($data['country'] ?? '') . "\n";
+        $message .= "Postal Code: " . ($data['postalCode'] ?? '') . "\n\n";
+        $message .= "Contact: " . ($data['firstName'] ?? '') . " " . ($data['lastName'] ?? '') . "\n";
+        $message .= "Email: " . ($data['businessEmail'] ?? '') . "\n";
+        $message .= "Phone: " . ($data['businessPhone'] ?? '') . "\n\n";
+        $message .= "Additional Info: " . ($data['additionalInfo'] ?? 'None') . "\n";
+        $message .= "Email Consent: " . (($data['emailConsent'] ?? false) ? 'Yes' : 'No') . "\n";
         break;
         
     case 'contact':
-        $subject = 'New Contact Form Submission - WiVision Website';
-        $reply_to = $data['email'] ?? $from_email;
-        $message = "=== CONTACT FORM SUBMISSION ===\n\n";
-        $message .= "CONTACT INFORMATION:\n";
-        $message .= "Name: " . ($data['name'] ?? 'Not provided') . "\n";
-        $message .= "Email: " . ($data['email'] ?? 'Not provided') . "\n";
+        $subject = 'New Contact Form - WiVision';
+        $message = "CONTACT FORM SUBMISSION\n\n";
+        $message .= "Name: " . ($data['name'] ?? '') . "\n";
+        $message .= "Email: " . ($data['email'] ?? '') . "\n";
         $message .= "Company: " . ($data['company'] ?? 'Not provided') . "\n";
         $message .= "Phone: " . ($data['phone'] ?? 'Not provided') . "\n\n";
-        
-        $message .= "MESSAGE:\n";
-        $message .= ($data['message'] ?? 'No message provided') . "\n\n";
-        
-        $message .= "Submitted: " . date('Y-m-d H:i:s') . "\n";
-        $message .= "IP Address: " . $_SERVER['REMOTE_ADDR'] . "\n";
+        $message .= "Message:\n" . ($data['message'] ?? '') . "\n";
         break;
         
     default:
         http_response_code(400);
-        echo json_encode(['success' => false, 'error' => 'Invalid form type']);
+        echo json_encode(['success' => false, 'error' => 'Invalid email type']);
         exit();
 }
 
 // Email headers
 $headers = array(
     'From' => $from_email,
-    'Reply-To' => $reply_to,
+    'Reply-To' => $data['email'] ?? $data['businessEmail'] ?? $from_email,
     'X-Mailer' => 'PHP/' . phpversion(),
-    'Content-Type' => 'text/plain; charset=UTF-8',
-    'X-Priority' => '3',
-    'Return-Path' => $from_email
+    'Content-Type' => 'text/plain; charset=UTF-8'
 );
 
 // Convert headers array to string
@@ -124,23 +95,13 @@ foreach ($headers as $key => $value) {
     $headers_string .= $key . ': ' . $value . "\r\n";
 }
 
-// Log the attempt (optional - for debugging)
-error_log("Email attempt - Type: $type, To: $to_email, Subject: $subject");
-
 // Send email
 $success = mail($to_email, $subject, $message, $headers_string);
 
 if ($success) {
-    echo json_encode([
-        'success' => true, 
-        'message' => 'Email sent successfully'
-    ]);
+    echo json_encode(['success' => true]);
 } else {
-    error_log("Email failed - Type: $type, Error: " . error_get_last()['message']);
     http_response_code(500);
-    echo json_encode([
-        'success' => false, 
-        'error' => 'Failed to send email. Please try again or contact us directly.'
-    ]);
+    echo json_encode(['success' => false, 'error' => 'Failed to send email']);
 }
 ?>
