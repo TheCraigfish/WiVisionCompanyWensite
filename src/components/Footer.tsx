@@ -45,11 +45,11 @@ const Footer = () => {
             <h3 className="text-xl font-semibold mb-6">Contact Info</h3>
             <div className="space-y-4">
               <div className="flex items-center">
-                <Phone className="h-5 w-5 text-teal-400 mr-3" />
+                <Phone className="h-5 w-5 text-blue-500 mr-3" />
                 <span className="text-slate-300">+27210653808</span>
               </div>
               <div className="flex items-center">
-                <Mail className="h-5 w-5 text-teal-400 mr-3" />
+                <Mail className="h-5 w-5 text-blue-500 mr-3" />
                 <span className="text-slate-300">info@wivision.co.za</span>
               </div>
             </div>
